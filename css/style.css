@@ -1,0 +1,54 @@
+/* ===== Brand colors ===== */
+:root {
+  --blue: #0b2d6b;
+  --gold: #f2b705;
+}
+
+/* ===== Base ===== */
+body {
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  background: #f6f8fc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1; }
+.gold { color: var(--gold); }
+.preline { white-space: pre-line; }
+
+/* ===== Navbar and footer ===== */
+.navbar-prmsu,
+.footer-prmsu {
+  background: var(--blue);
+  color: #fff;
+}
+.navbar-prmsu .nav-link.active { color: var(--gold); font-weight: 600; }
+
+/* ===== Hero (home page) ===== */
+.hero {
+  background:
+    linear-gradient(rgba(11, 45, 107, 0.8), rgba(11, 45, 107, 0.8)),
+    url("https://placehold.co/1600x700/0b2d6b/ffffff?text=Campus+Photo+Placeholder") center / cover;
+  color: #fff;
+  padding: 110px 0;
+}
+
+/* ===== Buttons and cards ===== */
+.btn-gold { background: var(--gold); color: var(--blue); font-weight: 600; }
+.btn-gold:hover { background: #d9a404; color: var(--blue); }
+
+.card {
+  border: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-4px); }
+.card-img-top { height: 170px; object-fit: cover; }
+
+/* ===== Maps ===== */
+#map { height: 70vh; min-height: 320px; border-radius: 12px; }
+.mini-map { height: 300px; }
+.map-popup { max-width: 230px; }
+
+/* ===== Admin ===== */
+.login-box { max-width: 380px; }
