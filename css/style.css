@@ -152,24 +152,145 @@ textarea:focus-visible {
 }
 
 /* ==========================================================
-   Temporary rules for pages that are restyled in the next commits
+   2. Home page, department cards, page headers
    ========================================================== */
+
+/* ===== Hero ===== */
 .hero {
+  position: relative;
+  overflow: hidden;
   color: #fff;
-  padding: 96px 0;
+  padding: 96px 0 112px;
   background:
     radial-gradient(1200px 500px at 85% -10%, rgba(242, 183, 5, 0.28), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(59, 130, 246, 0.35), transparent 55%),
     linear-gradient(135deg, #0b2d6b 0%, #0a2556 100%);
 }
-.card {
-  overflow: hidden;
+.hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.05; }
+.hero .lead { max-width: 640px; margin-inline: auto; color: rgba(255, 255, 255, 0.82); }
+
+.hero-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 620px;
+  margin-inline: auto;
+  padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.hero-search i { color: var(--muted); }
+.hero-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.25rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1rem;
+}
+.hero-search input:focus-visible { outline: none; }
+.hero-search:focus-within { box-shadow: var(--shadow), 0 0 0 4px rgba(242, 183, 5, 0.55); }
+
+/* ===== Feature tiles (overlap the hero) ===== */
+.features { position: relative; z-index: 2; margin-top: -56px; }
+.feature-tile {
+  display: block;
+  height: 100%;
+  padding: 1.5rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
   box-shadow: var(--shadow-sm);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.card-img-top { height: 170px; object-fit: cover; }
+a.feature-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow); color: inherit; }
+.feature-tile h5 { font-size: 1.05rem; }
+.feature-tile p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  background: var(--brand-50);
+  color: var(--brand);
+  font-size: 1.2rem;
+}
+
+/* ===== Section and page headings ===== */
+.section-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.section-title h2 { margin: 0; }
+.page-header { padding: 2.5rem 0 1.25rem; }
+.page-header p { margin: 0.25rem 0 0; color: var(--muted); }
+
+/* ===== Search field with icon ===== */
+.search-field { position: relative; }
+.search-field i {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+.search-field .form-control { padding-left: 2.6rem; }
+
+/* ===== Department cards ===== */
+.dept-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.dept-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.dept-card-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--brand-50); }
+.dept-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.dept-card:hover .dept-card-media img { transform: scale(1.05); }
+.dept-card-media .badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: var(--shadow-sm);
+}
+.dept-card-body { display: flex; flex: 1; flex-direction: column; gap: 0.5rem; padding: 1.1rem 1.15rem 1.25rem; }
+.dept-card-body h5 { margin: 0; font-size: 1.1rem; }
+.dept-card-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; padding-top: 0.75rem; }
+
+@media (max-width: 767.98px) {
+  .hero { padding: 64px 0 90px; }
+  .features { margin-top: -44px; }
+  .hero-search { padding-left: 1rem; }
+  .hero-search .btn { padding: 0.5rem 0.9rem; }
+}
 
 /* ==========================================================
    Temporary rules for the map, detail and admin pages (restyled in the next commit)
