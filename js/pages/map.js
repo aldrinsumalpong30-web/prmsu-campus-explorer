@@ -86,7 +86,9 @@ try {
   legend.innerHTML = [...seen.values()]
     .map(
       (dep) =>
-        `<span style="color:${colorFor(dep)}">&#9679;</span> ${escapeHtml(dep.categories?.category_name)} &nbsp;`
+        `<span class="legend-chip"><span class="dot" style="background:${colorFor(dep)}"></span>${escapeHtml(
+          dep.categories?.category_name
+        )}</span>`
     )
     .join('');
 
