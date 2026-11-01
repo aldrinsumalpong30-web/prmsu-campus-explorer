@@ -1,57 +1,142 @@
-/* ===== Brand colors ===== */
+/* ==========================================================
+   PRMSU Campus Explorer: modern design system
+   1. Foundation: tokens, base, navbar, footer, buttons, forms
+   ========================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
 :root {
-  --blue: #0b2d6b;
-  --gold: #f2b705;
+  /* Brand */
+  --brand: #0b2d6b;
+  --brand-600: #123a85;
+  --brand-50: #eef3fc;
+  --accent: #f2b705;
+  --accent-600: #d9a404;
+
+  /* Neutrals */
+  --ink: #0f172a;
+  --muted: #64748b;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+
+  /* Shape and depth */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow: 0 12px 32px -14px rgba(15, 23, 42, 0.28);
+
+  /* Bootstrap variables, so Bootstrap components follow the brand */
+  --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-body-color: var(--ink);
+  --bs-body-bg: var(--bg);
+  --bs-border-color: var(--border);
+  --bs-link-color: var(--brand-600);
+  --bs-link-hover-color: var(--brand);
 }
 
 /* ===== Base ===== */
 body {
-  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
-  background: #f6f8fc;
+  font-family: var(--bs-body-font-family);
+  background: var(--bg);
+  color: var(--ink);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
 }
 main { flex: 1; }
-.gold { color: var(--gold); }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; letter-spacing: -0.02em; }
+.text-muted { color: var(--muted) !important; }
+.gold { color: var(--accent); }
 .preline { white-space: pre-line; }
 
-/* ===== Navbar and footer ===== */
-.navbar-prmsu,
-.footer-prmsu {
-  background: var(--blue);
-  color: #fff;
+/* ===== Navbar ===== */
+.navbar-prmsu {
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--border);
 }
-.navbar-prmsu .nav-link.active { color: var(--gold); font-weight: 600; }
+.navbar-prmsu .navbar-brand { color: var(--brand); font-weight: 800; letter-spacing: -0.02em; }
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-600));
+  color: var(--accent);
+  font-size: 1rem;
+}
+.brand-text { line-height: 1.1; }
+.brand-text small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.navbar-prmsu .nav-link {
+  color: var(--ink);
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+}
+.navbar-prmsu .nav-link:hover { background: var(--brand-50); color: var(--brand); }
+.navbar-prmsu .nav-link.active { background: var(--brand-50); color: var(--brand); font-weight: 600; }
+.navbar-prmsu .nav-link[href="admin.html"] { border: 1px solid var(--border); }
 
-/* ===== Hero (home page) ===== */
-.hero {
-  background:
-    linear-gradient(rgba(11, 45, 107, 0.8), rgba(11, 45, 107, 0.8)),
-    url("https://placehold.co/1600x700/0b2d6b/ffffff?text=Campus+Photo+Placeholder") center / cover;
-  color: #fff;
-  padding: 110px 0;
+/* ===== Footer ===== */
+.footer-prmsu { background: var(--brand); color: #fff; border-top: 4px solid var(--accent); }
+.footer-prmsu a { color: #fff; opacity: 0.85; text-decoration: none; }
+.footer-prmsu a:hover { opacity: 1; text-decoration: underline; }
+.footer-prmsu h6 {
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.footer-prmsu .brand-mark { background: rgba(255, 255, 255, 0.12); }
+.footer-muted { color: rgba(255, 255, 255, 0.72); }
+.footer-rule { border-color: rgba(255, 255, 255, 0.18); opacity: 1; }
+
+/* ===== Buttons ===== */
+.btn { border-radius: 999px; font-weight: 600; padding: 0.5rem 1.1rem; }
+.btn-sm { padding: 0.35rem 0.85rem; }
+.btn-gold { background: var(--accent); border-color: var(--accent); color: var(--brand); }
+.btn-gold:hover,
+.btn-gold:focus { background: var(--accent-600); border-color: var(--accent-600); color: var(--brand); }
+.btn-primary {
+  --bs-btn-bg: var(--brand);
+  --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-bg: var(--brand-600);
+  --bs-btn-hover-border-color: var(--brand-600);
+  --bs-btn-active-bg: var(--brand-600);
+  --bs-btn-active-border-color: var(--brand-600);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--brand);
+  --bs-btn-border-color: #c7d2e8;
+  --bs-btn-hover-bg: var(--brand);
+  --bs-btn-hover-border-color: var(--brand);
+  --bs-btn-active-bg: var(--brand);
+  --bs-btn-active-border-color: var(--brand);
 }
 
-/* ===== Buttons and cards ===== */
-.btn-gold { background: var(--gold); color: var(--blue); font-weight: 600; }
-.btn-gold:hover { background: #d9a404; color: var(--blue); }
-
-.card {
-  border: 0;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s;
+/* ===== Forms and badges ===== */
+.form-control,
+.form-select { border-radius: var(--radius-sm); border-color: var(--border); padding: 0.6rem 0.9rem; }
+.form-control:focus,
+.form-select:focus { border-color: var(--brand-600); box-shadow: 0 0 0 0.25rem rgba(18, 58, 133, 0.15); }
+.badge.bg-primary {
+  background: var(--brand-50) !important;
+  color: var(--brand);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.4em 0.75em;
 }
-.card:hover { transform: translateY(-4px); }
-.card-img-top { height: 170px; object-fit: cover; }
-
-/* ===== Maps ===== */
-#map { height: 70vh; min-height: 320px; border-radius: 12px; }
-.mini-map { height: 300px; }
-.map-popup { max-width: 230px; }
-
-/* ===== Admin ===== */
-.login-box { max-width: 380px; }
 
 /* ===== Accessibility ===== */
 a:focus-visible,
@@ -59,14 +144,37 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid var(--gold);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
-
-/* ===== Phones and small tablets ===== */
-@media (max-width: 767.98px) {
-  .hero { padding: 70px 0; }
-  .hero h1 { font-size: 2.25rem; }
-  #map { height: 55vh; }
-  .card .btn { margin-bottom: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* ==========================================================
+   Temporary rules for pages that are restyled in the next commits
+   ========================================================== */
+.hero {
+  color: #fff;
+  padding: 96px 0;
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(242, 183, 5, 0.28), transparent 60%),
+    linear-gradient(135deg, #0b2d6b 0%, #0a2556 100%);
+}
+.card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.card-img-top { height: 170px; object-fit: cover; }
+
+/* ==========================================================
+   Temporary rules for the map, detail and admin pages (restyled in the next commit)
+   ========================================================== */
+#map { height: 70vh; min-height: 320px; border-radius: 12px; z-index: 0; }
+.mini-map { height: 300px; z-index: 0; }
+.map-popup { max-width: 230px; }
+.login-box { max-width: 380px; }
