@@ -1,7 +1,8 @@
-// Admin page: login, then tabs for managing buildings and categories.
+// Admin page: login, then tabs for managing departments, buildings and categories.
 import { initLayout } from '../layout.js';
 import { checkAccess, renderLogin, logout } from '../admin/auth.js';
 import { renderLookup } from '../admin/lookups.js';
+import { renderDepartments } from '../admin/departments.js';
 import { escapeHtml } from '../utils.js';
 
 initLayout();
@@ -9,6 +10,7 @@ initLayout();
 const app = document.getElementById('app');
 
 const TABS = [
+  { id: 'departments', label: 'Departments', render: renderDepartments },
   { id: 'buildings', label: 'Buildings', render: (el) => renderLookup(el, 'buildings') },
   { id: 'categories', label: 'Categories', render: (el) => renderLookup(el, 'categories') },
 ];
