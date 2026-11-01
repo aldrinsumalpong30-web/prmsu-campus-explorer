@@ -10,12 +10,20 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-  <main class="container mt-4" id="map-section">
-    <h2>Interactive Campus Map</h2>
-    <input id="search" class="form-control my-3" placeholder="Search departments or buildings..."
-           aria-label="Search the map">
-    <div id="map"></div>
-    <div id="legend" class="small mt-2"></div>
+  <main class="container" id="map-section">
+    <header class="page-header">
+      <h1 class="h2">Interactive Campus Map</h1>
+      <p>Tap a marker or pick a department to see details and directions.</p>
+    </header>
+
+    <div class="search-field mb-3">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="search" class="form-control" placeholder="Search departments or buildings..."
+             aria-label="Search the map">
+    </div>
+
+    <div class="map-card"><div id="map"></div></div>
+    <div id="legend" class="legend"></div>
     <div id="list" class="row g-2 mt-3"></div>
   </main>
 

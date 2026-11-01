@@ -13,22 +13,51 @@
   <main>
     <section class="hero text-center">
       <div class="container">
-        <h1 class="display-4 fw-bold">Explore PRMSU</h1>
-        <p class="lead">Find colleges, offices and facilities, and get directions across campus.</p>
-        <form action="departments.html" class="row justify-content-center g-2 mb-3" role="search">
-          <div class="col-md-5">
-            <input name="q" class="form-control form-control-lg"
-                   placeholder="Search department or building" aria-label="Search departments">
-          </div>
+        <span class="eyebrow"><i class="fa-solid fa-location-dot"></i> PRMSU Campus Guide</span>
+        <h1>Find your way around <span class="gold">PRMSU</span></h1>
+        <p class="lead mb-4">Find colleges, offices and facilities, and get directions across campus.</p>
+        <form action="departments.html" class="hero-search mb-4" role="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input name="q" placeholder="Search department or building" aria-label="Search departments">
+          <button class="btn btn-gold">Search</button>
         </form>
-        <a href="map.html" class="btn btn-gold btn-lg">
-          <i class="fa-solid fa-map-location-dot"></i> Explore Campus
+        <a href="map.html" class="btn btn-outline-light">
+          <i class="fa-solid fa-map-location-dot"></i> Explore the campus map
         </a>
       </div>
     </section>
 
+    <section class="container features">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <a class="feature-tile" href="departments.html">
+            <div class="feature-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <h5>Department directory</h5>
+            <p>Browse colleges, offices and services, or filter by category.</p>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a class="feature-tile" href="map.html">
+            <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <h5>Interactive map</h5>
+            <p>See every location on the campus map with street and satellite views.</p>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-tile">
+            <div class="feature-icon"><i class="fa-solid fa-diamond-turn-right"></i></div>
+            <h5>Get directions</h5>
+            <p>Open any department and tap Directions to navigate there.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="container mt-5">
-      <h2 class="mb-4">Featured Departments</h2>
+      <div class="section-title">
+        <h2>Featured departments</h2>
+        <a href="departments.html" class="fw-semibold text-decoration-none">View all &rarr;</a>
+      </div>
       <div class="row g-4" id="featured"><p>Loading...</p></div>
     </section>
   </main>

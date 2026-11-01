@@ -12,7 +12,7 @@ function galleryHtml(images = []) {
   return images
     .map(
       (img) =>
-        `<div class="col-4"><img class="img-fluid rounded" src="${escapeHtml(img.image_path)}" alt="Department photo"></div>`
+        `<div class="col-4"><img class="rounded" src="${escapeHtml(img.image_path)}" alt="Department photo"></div>`
     )
     .join('');
 }
@@ -20,50 +20,60 @@ function galleryHtml(images = []) {
 function programsHtml(programs) {
   const items = (programs || '').split(/\r?\n/).filter((line) => line.trim());
   if (!items.length) return '';
-  return `<h5>Programs / Services</h5>
-    <ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+  return `<h5 class="mt-4">Programs / Services</h5>
+    <ul class="program-list">${items
+      .map((item) => `<li><i class="fa-solid fa-circle-check"></i>${escapeHtml(item)}</li>`)
+      .join('')}</ul>`;
 }
 
 function contactHtml(dep) {
   const parts = [];
   if (dep.contact_email) {
     parts.push(
-      `<a href="mailto:${escapeHtml(dep.contact_email)}">${escapeHtml(dep.contact_email)}</a>`
+      `<span><i class="fa-solid fa-envelope"></i><a href="mailto:${escapeHtml(dep.contact_email)}">${escapeHtml(dep.contact_email)}</a></span>`
     );
   }
-  if (dep.contact_number) parts.push(escapeHtml(dep.contact_number));
-  return parts.length ? `<p>${parts.join(' &nbsp; ')}</p>` : '';
+  if (dep.contact_number) {
+    parts.push(`<span><i class="fa-solid fa-phone"></i>${escapeHtml(dep.contact_number)}</span>`);
+  }
+  return parts.length ? `<div class="contact-row">${parts.join('')}</div>` : '';
 }
 
 function locationHtml(dep) {
   const building = dep.buildings;
   const body = building
     ? `<div id="mini-map" class="mini-map rounded"></div>
-       <a class="btn btn-gold mt-3" target="_blank" rel="noopener"
-          href="${directionsUrl(building.latitude, building.longitude)}">Get Directions</a>
-       <a class="btn btn-outline-primary mt-3"
-          href="map.html?dept=${encodeURIComponent(dep.slug)}">View on Map</a>`
+       <div class="d-flex flex-wrap gap-2 mt-3">
+         <a class="btn btn-gold" target="_blank" rel="noopener"
+            href="${directionsUrl(building.latitude, building.longitude)}">
+           <i class="fa-solid fa-diamond-turn-right"></i> Get Directions</a>
+         <a class="btn btn-outline-primary" href="map.html?dept=${encodeURIComponent(dep.slug)}">View on Map</a>
+       </div>`
     : '';
-  return `<p><b>Building:</b> ${escapeHtml(building?.building_name || 'N/A')}</p>${body}`;
+  return `<h5><i class="fa-solid fa-location-dot"></i> Location</h5>
+    <p class="text-muted">${escapeHtml(building?.building_name || 'No building assigned')}</p>${body}`;
 }
 
 function pageHtml(dep) {
   return `
-    <nav class="small" aria-label="breadcrumb">
+    <nav class="small breadcrumb-nav" aria-label="breadcrumb">
       <a href="index.html">Home</a> / <a href="departments.html">Directory</a> / ${escapeHtml(dep.department_name)}
     </nav>
-    <h2 class="mt-2">${escapeHtml(dep.department_name)}</h2>
+    <h1 class="h2 mt-2">${escapeHtml(dep.department_name)}</h1>
     <span class="badge bg-primary">${escapeHtml(dep.categories?.category_name)}</span>
 
-    <div class="row mt-3 g-4">
-      <div class="col-md-7">
-        <img class="img-fluid rounded mb-3" src="${imageUrl(dep.image)}" alt="${escapeHtml(dep.department_name)}">
-        <div class="row g-2">${galleryHtml(dep.department_images)}</div>
-        <p class="mt-3 preline">${escapeHtml(dep.description)}</p>
-        ${programsHtml(dep.programs)}
-        ${contactHtml(dep)}
+    <div class="row mt-4 g-4">
+      <div class="col-lg-7">
+        <img class="detail-cover mb-3" src="${imageUrl(dep.image)}" alt="${escapeHtml(dep.department_name)}">
+        <div class="row g-2 gallery">${galleryHtml(dep.department_images)}</div>
+        <div class="panel mt-3">
+          <h5>About</h5>
+          <p class="preline mb-0">${escapeHtml(dep.description)}</p>
+          ${programsHtml(dep.programs)}
+          ${contactHtml(dep)}
+        </div>
       </div>
-      <div class="col-md-5">${locationHtml(dep)}</div>
+      <div class="col-lg-5"><div class="panel side-card">${locationHtml(dep)}</div></div>
     </div>`;
 }
 
