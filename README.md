@@ -10,9 +10,9 @@ final project *"From Code to Cloud"*.
 
 | | |
 |---|---|
-| **Live site** | https://prmsu-campus-explorer.netlify.app|
-| **Admin page** | https://prmsu-campus-explorer.netlify.app/admin.html |
-| **Repository** | https://github.com/aldrinsumalpong30-web/prmsu-campus-explorer |
+| **Live site** | https://prmsu-iba-campus-explorer.vercel.app |
+| **Admin page** | https://prmsu-iba-campus-explorer.vercel.app/admin.html |
+| **Repository** | https://github.com/YOUR-USERNAME/YOUR-REPO |
 
 > This is an unofficial student project. It is not affiliated with or endorsed by PRMSU.
 > Verify institutional details at the official PRMSU website.
@@ -33,13 +33,13 @@ final project *"From Code to Cloud"*.
 | Backend | **Supabase** (backend-as-a-service) | Provides the API, authentication and file storage without running a server. The browser talks to it with the public `anon` key, and **Row Level Security** policies in the database decide who may read or write. |
 | Database | **PostgreSQL** (via Supabase) | The data is relational: each department belongs to a category and a building, so foreign keys keep the records consistent. |
 | Maps | Leaflet + OpenStreetMap | Free and needs no API key or billing account. Directions open as a plain Google Maps link. |
-| Hosting | **Netlify** | Deploys straight from the GitHub repository with no build step, serves the site over HTTPS, and redeploys automatically on every push to `main`. |
+| Hosting | **Vercel** | Deploys straight from the GitHub repository with no build step, serves the site over HTTPS, and redeploys automatically on every push to `main`. |
 | Version control | Git + GitHub | Commit history, feature branches and pull requests. |
 
 ### How the pieces connect
 
 ```
-Browser (static HTML/JS on Netlify)
+Browser (static HTML/JS on Vercel)
         |
         |  Supabase JS client + public anon key
         v
@@ -102,14 +102,14 @@ supabase/
    ```
    then open `http://localhost:8000/index.html`. The admin page is `http://localhost:8000/admin.html`.
 
-## Deployment steps (Netlify)
+## Deployment steps (Vercel)
 
 1. Push the project to a GitHub repository (the `main` branch).
-2. Sign in at [netlify.com](https://www.netlify.com) with GitHub.
-3. Click **Add new site > Import an existing project**, choose **GitHub**, and select this repository.
-4. Set the branch to deploy to `main`. Leave the **build command** empty and set the **publish directory** to `.` (the project root), because the site is plain static files.
-5. Click **Deploy**. When it finishes, Netlify gives the site a URL ending in `.netlify.app`. To choose the name, go to **Site configuration > Site details > Change site name**.
-6. In Supabase, open **Authentication > URL Configuration** and set the **Site URL** to the live Netlify URL.
+2. Sign in at [vercel.com](https://vercel.com) with GitHub.
+3. Click **Add New > Project**, then **Import** this repository.
+4. Set **Framework Preset** to **Other**. Leave the **Build Command** and **Output Directory** empty and keep the **Root Directory** as `./`, because the site is plain static files.
+5. Click **Deploy**. When it finishes, Vercel gives the site a URL ending in `.vercel.app`: https://prmsu-iba-campus-explorer.vercel.app
+6. In Supabase, open **Authentication > URL Configuration** and set the **Site URL** to the live Vercel URL.
 7. Open the live site, log in at `/admin.html`, and test create, edit and delete.
 
 After this, every push to `main` redeploys the site automatically, so the live version always matches the repository.
