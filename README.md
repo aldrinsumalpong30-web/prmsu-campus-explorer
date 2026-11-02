@@ -139,9 +139,8 @@ After this, every push to `main` redeploys the site automatically, so the live v
 
 ## Known limitations
 
-- Some sample records may still be placeholders until replaced through the admin page.
 - Deleting a department removes its gallery records, but the image files stay in Supabase Storage.
-- Map tiles come from OpenStreetMap and Esri, which are free but intended for light traffic.
+- Map tiles come from OpenStreetMap and Esri.
 
 ## Credits
 
